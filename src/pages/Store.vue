@@ -3,14 +3,11 @@
     <div class="input-filter">
       <div class="search-input">
         <v-text-field
-          @click:append-inner="debouncedHandleSearch"
           append-inner-icon="mdi-magnify"
           density="compact"
           clearable
           placeholder="Buscar productos..."
           v-model="search"
-          @keyup.enter="debouncedHandleSearch"
-          @input="debouncedHandleSearch"
         ></v-text-field>
       </div>
       <div class="select-group">
@@ -90,10 +87,10 @@ const handleSearch = () => {
   fetchProducts()
 }
 
-const debouncedHandleSearch = debounce(handleSearch, 1000)
+const debouncedHandleSearch = debounce(handleSearch, 500)
 
-watch([select, colorSelect], () => {
-  handleSearch()
+watch([select, colorSelect, search], () => {
+  debouncedHandleSearch()
 })
 
 const onScroll = async (event: Event) => {

@@ -27,12 +27,11 @@ export const useProductsStore = defineStore('products', () => {
   }
 
   const setParams = (newParams: FetchParams) => {
-    params.value = { ...params.value, ...newParams }
+    params.value = newParams
   }
 
   const fetchProducts = async () => {
     if (loading.value || page.value > last_page.value) return
-
     try {
       loading.value = true
       const response = await axios.get(
