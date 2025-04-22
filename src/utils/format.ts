@@ -1,4 +1,4 @@
-import type { FetchProductsParams } from '@/models/fetch-params.interface'
+import type { FetchParams } from '@/models/fetch-params.interface'
 
 export function formatPrice(price: number): string {
   return new Intl.NumberFormat('en-US', {
@@ -7,12 +7,12 @@ export function formatPrice(price: number): string {
   }).format(price)
 }
 
-export const formatQueryParams = (params: FetchProductsParams): string => {
+export const formatQueryParams = (params: FetchParams): string => {
   return Object.keys(params)
-    .filter((key) => params[key as keyof FetchProductsParams])
+    .filter((key) => params[key as keyof FetchParams])
     .map(
       (key) =>
-        `${encodeURIComponent(key)}=${encodeURIComponent(params[key as keyof FetchProductsParams] ?? '')}`
+        `${encodeURIComponent(key)}=${encodeURIComponent(params[key as keyof FetchParams] ?? '')}`
     )
     .join('&')
 }
