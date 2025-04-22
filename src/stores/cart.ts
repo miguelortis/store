@@ -21,6 +21,10 @@ export const useCartStore = defineStore('cart', () => {
     last_page.value = l_pg
   }
 
+  const setParams = (newParams: FetchParams) => {
+    params.value = { ...params.value, ...newParams }
+  }
+
   function clearCart() {
     cart.value = []
     page.value = 1
@@ -57,6 +61,7 @@ export const useCartStore = defineStore('cart', () => {
     last_page,
     loading,
     params,
+    setParams,
     setPagination,
     clearCart,
   }

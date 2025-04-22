@@ -26,6 +26,10 @@ export const useProductsStore = defineStore('products', () => {
     page.value = 1
   }
 
+  const setParams = (newParams: FetchParams) => {
+    params.value = { ...params.value, ...newParams }
+  }
+
   const fetchProducts = async () => {
     if (loading.value || page.value > last_page.value) return
 
@@ -56,6 +60,7 @@ export const useProductsStore = defineStore('products', () => {
     last_page,
     loading,
     params,
+    setParams,
     setProducts,
     setPagination,
     clearProducts,
